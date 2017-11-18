@@ -1,0 +1,29 @@
+--- #This playbook installs webserver
+- hosts: all
+  connection: ssh
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+    - name: install webserver
+      yum: 
+        name: wget
+        state: installed
+      notify:
+      - httpd
+
+    - name: install php
+      yum: name=php state=installed
+    - name: Install db
+      yum:
+        name: mariadb
+        state: installed
+    - name: Install mysql client
+      yum:
+        name: mysql
+        state: installed
+
+
+  handlers:
+    - name:  httpd
+      systemd: name=httpd state=restarted enabled=yes
