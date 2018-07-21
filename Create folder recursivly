@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo 
+  connection: ssh
+  tasks: 
+    - name: Creates a folder recursively  
+      file: 
+        path: /tmp/world/us/illinois/chicago/western
+        recurse: yes 
