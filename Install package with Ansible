@@ -1,0 +1,19 @@
+--- 
+- hosts: all 
+  become: yes
+  become_method: sudo 
+  tasks: 
+    - name: Install package
+      tags:
+        - Install
+      package: 
+        name: tree
+        state: present
+
+
+    - name: Remove Package
+      tags: 
+        - Remove
+      package:
+        name: tree
+        state: absent
